@@ -10,6 +10,26 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/helper/sum.js":
+/*!***************************!*\
+  !*** ./src/helper/sum.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ sum)\n/* harmony export */ });\nfunction sum() {\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  return args.reduce(function (a, b) {\n    return a + b;\n  }, 0);\n}\n\n//# sourceURL=webpack://demo/./src/helper/sum.js?");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_sum__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper/sum */ \"./src/helper/sum.js\");\n/* harmony import */ var _basic_demo_src_styles_css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../basic-demo/src/styles/css/style.css */ \"./src/styles/css/style.css\");\n/* harmony import */ var _basic_demo_src_styles_sass_style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../basic-demo/src/styles/sass/style.scss */ \"./src/styles/sass/style.scss\");\n\n\n\nconsole.log((0,_helper_sum__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(1, 2, 3));\n\n//# sourceURL=webpack://demo/./src/index.js?");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/sass/style.scss":
 /*!*****************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/styles/sass/style.scss ***!
@@ -137,26 +157,6 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj
 /***/ ((module) => {
 
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\n\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://demo/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
-
-/***/ }),
-
-/***/ "./src/helper/sum.js":
-/*!***************************!*\
-  !*** ./src/helper/sum.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ sum)\n/* harmony export */ });\nfunction sum(...args) {\n  return args.reduce((a, b) => a + b, 0);\n};\n\n\n//# sourceURL=webpack://demo/./src/helper/sum.js?");
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helper_sum__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper/sum */ \"./src/helper/sum.js\");\n/* harmony import */ var _basic_demo_src_styles_css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../basic-demo/src/styles/css/style.css */ \"./src/styles/css/style.css\");\n/* harmony import */ var _basic_demo_src_styles_sass_style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../basic-demo/src/styles/sass/style.scss */ \"./src/styles/sass/style.scss\");\n\n\n\n\nconsole.log((0,_helper_sum__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(1, 2, 3))\n\n\n//# sourceURL=webpack://demo/./src/index.js?");
 
 /***/ }),
 

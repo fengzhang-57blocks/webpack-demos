@@ -1,11 +1,12 @@
-const path = require('path');
+const path = require("path");
+const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  mode: "development",
+  entry: "./src/index.js",
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, './dist/'),
+    filename: "main.js",
+    path: path.resolve(__dirname, "./dist/"),
     // 此配置告知webpack每次打包都清空之前的打包结果
     clean: true,
   },
@@ -17,23 +18,23 @@ module.exports = {
         // 指定使用哪些loader来处理这种格式的文件
         use: [
           // 将js中的css通过创建style标签的形式添加到HTML（DOM）中
-          'style-loader',
+          "style-loader",
           // 将css文件编译为commonjs的模块到js中
-          'css-loader',
+          "css-loader",
         ],
       },
       {
         test: /\.s(a|c)ss$/,
         use: [
-          'style-loader',
-          'css-loader',
+          "style-loader",
+          "css-loader",
           // 将scss或sass文件编译为css文件
-          'sass-loader',
+          "sass-loader",
         ],
       },
       {
         test: /\.(png|jpe?g|gif|webp|svg)$/,
-        type: 'asset',
+        type: "asset",
         parser: {
           dataUrlCondition: {
             // 指定小于30kb的图片转base64
@@ -43,9 +44,20 @@ module.exports = {
         },
         generator: {
           // 此配置可以将图片输出到指定路径
-          filename: 'images/[name].[ext]',
+          filename: "images/[name].[ext]",
         },
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/, // 排除node_modules代码不编译
+        loader: "babel-loader",
       },
     ],
   },
+  plugins: [
+    new ESLintWebpackPlugin({
+      // 指定检查文件的根目录
+      context: path.resolve(__dirname, "src"),
+    }),
+  ],
 };
