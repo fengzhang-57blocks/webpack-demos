@@ -15,7 +15,7 @@ module.exports = {
   // 具体检查规则
   rules: {
     "no-var": "error", // 禁止使用var声明变量
-    "no-console": "warn", // 禁止使用console
+    // "no-console": "warn", // 禁止使用console
   },
   // 继承其他规则
   extends: [
