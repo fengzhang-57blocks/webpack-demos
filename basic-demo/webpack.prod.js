@@ -1,30 +1,51 @@
 const path = require("path");
 const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./src/index.js",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "./dist/"),
-    clean: true, // 告知webpack每次打包都清空之前的打包结果
+    clean: true,
   },
   module: {
     rules: [
       {
         test: /\.css$/, // 匹配所有.css结尾的文件
-        // 指定使用哪些loader来处理这种格式的文件
         use: [
-          "style-loader",  // 将js中的css通过创建style标签的形式添加到HTML（DOM）中
+          MiniCssExtractPlugin.loader,
           "css-loader", // 将css文件编译为commonjs的模块到js中
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-preset-env", // 使用这个预设能解决大多数样式兼容性问题
+                ],
+              },
+            },
+          },
         ],
       },
       {
         test: /\.s(a|c)ss$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-preset-env", // 使用这个预设能解决大多数样式兼容性问题
+                ],
+              },
+            },
+          },
           "sass-loader", // 将scss或sass文件编译为css文件
         ],
       },
@@ -49,16 +70,14 @@ module.exports = {
   },
   plugins: [
     new ESLintWebpackPlugin({
-
-      context: path.resolve(__dirname, "src"), // 指定检查文件的根目录
+      context: path.resolve(__dirname , "src"), // 指定检查文件的根目录
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
+    new MiniCssExtractPlugin({
+      filename: './styles/[chunkhash].css'
+    }),
+    new CssMinimizerPlugin(), // css压缩
   ],
-  // devServer: {
-  //   host: "localhost", // 启动服务器域名
-  //   port: "3000", // 服务器端口号
-  //   open: true, // 编译完成之后自动打开浏览器
-  // },
 };
