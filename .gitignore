@@ -163,4 +163,7 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 .idea/**/azureSettings.xml
 
+# Webpack build dir
+*/dist
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,webstorm,react
