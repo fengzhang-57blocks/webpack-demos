@@ -166,4 +166,7 @@ fabric.properties
 # Webpack build dir
 */dist
 
+# cache folder for webpack build
+*/cache
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,webstorm,react
