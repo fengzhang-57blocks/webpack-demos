@@ -14,7 +14,7 @@ module.exports = {
     rules: [
       {
         // 指定哪些类型文件会被loader转换处理
-        test: '/\\.txt$/',
+        test: /\\.txt$/,
         // 指定在处理这些文件时应该使用哪些loader
         loader: 'raw-loader',
       },
