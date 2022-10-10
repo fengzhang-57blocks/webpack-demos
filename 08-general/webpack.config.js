@@ -1,4 +1,5 @@
 const path = require('path');
+const ESLintWebpackPlugin = require("eslint-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -7,7 +8,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
   },
   module: {
     rules: [
@@ -16,6 +17,11 @@ module.exports = {
         // 会遍历 `module.rules` 中所有的loader，即使这些loader中第一个就命中，webpack还是会遍历剩下的loader，
         // 我们可以使用 `oneOf` 根据文件类型加载对应的loader，只要命中就退出 loader 的匹配。
         oneOf: [
+          {
+            test: /\.js$/,
+            loader: "babel-loader",
+            exclude: /node_modules/, // 排除node_modules代码不编译
+          },
           {
             test: /\.css$/,
             use: [
@@ -58,6 +64,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new ESLintWebpackPlugin({
+      context: path.resolve(__dirname, "src"), // 指定检查文件的根目录
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
@@ -70,5 +79,7 @@ module.exports = {
     // css压缩，运行npm run build之后查看输出目录的样式文件
     new CssMinimizerPlugin(),
   ],
-  mode: "development",
+  devtool: "eval-cheap-module-source-map", // development
+  // devtool: "hidden-source-map", // production
+  mode: "production",
 };
