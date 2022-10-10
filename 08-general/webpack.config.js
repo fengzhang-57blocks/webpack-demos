@@ -13,52 +13,45 @@ module.exports = {
   module: {
     rules: [
       {
-        // webpack在把某个文件交给loader处理时，
-        // 会遍历 `module.rules` 中所有的loader，即使这些loader中第一个就命中，webpack还是会遍历剩下的loader，
-        // 我们可以使用 `oneOf` 根据文件类型加载对应的loader，只要命中就退出 loader 的匹配。
-        oneOf: [
+        test: /\.jsx?$/,
+        loader: "babel-loader",
+        exclude: /node_modules/, // 排除node_modules代码不编译
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 用 `MiniCssExtractPlugin.loader` 替换掉之前的 `style-loader`
+          "css-loader",
+          // ❗️注意，此时执行打包命令并不会生效，我们还需在`package.json`中设置`browserslist`
           {
-            test: /\.js$/,
-            loader: "babel-loader",
-            exclude: /node_modules/, // 排除node_modules代码不编译
-          },
-          {
-            test: /\.css$/,
-            use: [
-              MiniCssExtractPlugin.loader, // 用 `MiniCssExtractPlugin.loader` 替换掉之前的 `style-loader`
-              "css-loader",
-              // ❗️注意，此时执行打包命令并不会生效，我们还需在`package.json`中设置`browserslist`
-              {
-                loader: "postcss-loader",
-                options: {
-                  postcssOptions: {
-                    plugins: [
-                      "postcss-preset-env", // 使用这个预设能解决大多数样式兼容性问题
-                    ],
-                  },
-                },
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-preset-env", // 使用这个预设能解决大多数样式兼容性问题
+                ],
               },
-            ],
+            },
           },
+        ],
+      },
+      {
+        test: /\.s(a|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader, // 用 `MiniCssExtractPlugin.loader` 替换掉之前的 `style-loader`
+          "css-loader",
+          // ❗️注意，此时执行打包命令并不会生效，我们还需在`package.json`中设置`browserslist`
           {
-            test: /\.s(a|c)ss$/,
-            use: [
-              MiniCssExtractPlugin.loader, // 用 `MiniCssExtractPlugin.loader` 替换掉之前的 `style-loader`
-              "css-loader",
-              // ❗️注意，此时执行打包命令并不会生效，我们还需在`package.json`中设置`browserslist`
-              {
-                loader: "postcss-loader",
-                options: {
-                  postcssOptions: {
-                    plugins: [
-                      "postcss-preset-env", // 使用这个预设能解决大多数样式兼容性问题
-                    ],
-                  },
-                },
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  "postcss-preset-env", // 使用这个预设能解决大多数样式兼容性问题
+                ],
               },
-              "sass-loader",
-            ],
+            },
           },
+          "sass-loader",
         ],
       }
     ],
@@ -81,5 +74,9 @@ module.exports = {
   ],
   devtool: "eval-cheap-module-source-map", // development
   // devtool: "hidden-source-map", // production
-  mode: "production",
+  // 遇到jsx文件无法识别，可通过配置自动补全文件名来解决
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  mode: "development",
 };

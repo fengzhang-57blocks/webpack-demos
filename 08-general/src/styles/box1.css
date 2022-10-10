@@ -1,9 +1,0 @@
-.box1 {
-   /*
-    为了验证样式兼容性文件，在这里加个 `display: flex;`,之后查看打包之后的结果会发现display被做了写兼容性改进
-   */
-  display: flex;
-  width: 100px;
-  height: 100px;
-  background-color: green;
-}

@@ -22,7 +22,7 @@ module.exports = {
     "no-var": "error", // 禁止使用var声明变量
   },
   // 继承其他规则
-  extends: [
-    "eslint:recommended", // 使用eslint官方推荐的规则
-  ],
+  // extends: [
+  //   "eslint:recommended", // 使用eslint官方推荐的规则
+  // ],
 };
