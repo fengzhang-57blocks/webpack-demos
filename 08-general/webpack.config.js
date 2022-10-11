@@ -93,7 +93,7 @@ module.exports = {
     // css压缩，运行npm run build之后查看输出目录的样式文件
     new CssMinimizerPlugin(),
   ],
-  devtool: "eval-cheap-module-source-map", // development
+  devtool: "cheap-module-source-map", // development
   // devtool: "hidden-source-map", // production
   // 遇到jsx文件无法识别，可通过配置自动补全文件名来解决
   resolve: {
