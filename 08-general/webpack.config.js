@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
+    clean: true,
   },
   module: {
     rules: [
@@ -56,6 +57,18 @@ module.exports = {
               "sass-loader",
             ],
           },
+          {
+            test: /\.(png|jpe?g|gif)$/,
+            type: 'asset',
+            parser: {
+              dataUrlCondition: {
+                maxSize: 30 * 1024,
+              },
+            },
+            generator: {
+              filename: "./assets/[contenthash][ext][query]",
+            },
+          }
         ],
       }
     ],
