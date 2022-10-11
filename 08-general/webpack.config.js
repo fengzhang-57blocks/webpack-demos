@@ -62,10 +62,14 @@ module.exports = {
             type: 'asset',
             parser: {
               dataUrlCondition: {
+                // 配置此选项后 < 30kb 的图片文件会被转换为base64
+                // 优点：减少请求次数
+                // 缺点：转换为base64之后，体积会增大，所以过大的图片不适宜转换为base64
                 maxSize: 30 * 1024,
               },
             },
             generator: {
+              // 图片资源的输出目录
               filename: "./assets/[contenthash][ext][query]",
             },
           }
