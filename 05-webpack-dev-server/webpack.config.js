@@ -8,9 +8,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-    }),
+    new HtmlWebpackPlugin(),
   ],
   // webpack-dev-server服务器启动之后并不会在`./dist`目录下有任何资源输出，此时打包之后的资源都在挂载在了内存中
   // 当然devServer也可以不配置而直接运行`npx webpack serve`，此时服务器启动地址为默认的 `http://localhost:8080/`

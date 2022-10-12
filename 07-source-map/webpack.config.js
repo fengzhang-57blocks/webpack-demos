@@ -8,9 +8,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
+    new HtmlWebpackPlugin(),
   ],
   // 定位错误信息只包含行映射，打包编译速度快
   devtool: "cheap-module-source-map",

@@ -1,5 +1,4 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // 打包入口文件
@@ -16,6 +15,7 @@ module.exports = {
         // 指定哪些类型文件会被loader转换处理
         test: /\\.txt$/,
         // 指定在处理这些文件时应该使用哪些loader
+        // 在使用loader时，一般要通过npm install的方式来安装
         loader: 'raw-loader',
       },
     ],
@@ -26,9 +26,7 @@ module.exports = {
   //    2. 导入`webpack.config.js`
   //    3. 放到plugins配置下，且多数插件都可自定义插件配置
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
+
   ],
   // 为webpack指定模式，一般分：development/production/none
   //    开发中设置为 `development`
