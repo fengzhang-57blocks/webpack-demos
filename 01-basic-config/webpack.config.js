@@ -25,9 +25,7 @@ module.exports = {
   //    1. 先通过npm安装
   //    2. 导入`webpack.config.js`
   //    3. 放到plugins配置下，且多数插件都可自定义插件配置
-  plugins: [
-
-  ],
+  plugins: [],
   // 为webpack指定模式，一般分：development/production/none
   //    开发中设置为 `development`
   //    上线时设置为 `production`
