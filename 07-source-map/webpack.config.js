@@ -11,6 +11,7 @@ module.exports = {
     new HtmlWebpackPlugin(),
   ],
   // 定位错误信息只包含行映射，打包编译速度快
-  devtool: "cheap-module-source-map",
-  mode: "development",
+  // devtool: "cheap-module-source-map",
+  devtool: "source-map", // production 模式使用source-map
+  mode: "production",
 };

@@ -8,7 +8,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js',
+    filename: 'js/[name].[chunkhash].js',
     clean: true,
   },
   module: {
@@ -99,5 +99,17 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  mode: "production",
+  // 项目优化配置项
+  optimization: {
+    // 配置splitChunks，将vendor(node_modules)与业务逻辑代码做分割
+    // 这样在打包之后vendor代码就会被打包成单独的文件
+    // 特别是多入口项目引用了相同的文件，被引用的文件不会被打包成多份
+    splitChunks: {
+      chunks: "all",
+    },
+    runtimeChunk: {
+      name: (entrypoint) => `runtime-${entrypoint.name}`
+    },
+  },
+  mode: "development",
 };

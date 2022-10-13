@@ -70,5 +70,5 @@ module.exports = {
     // css压缩，运行npm run build之后查看输出目录的样式文件
     new CssMinimizerPlugin(),
   ],
-  mode: "development",
+  mode: "production",
 };
